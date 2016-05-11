@@ -121,13 +121,42 @@ namespace MultiplicadorBooth
 
         private static int[] igualadorCasasDec(int [] bin, int tamanho)
         {
-            return null;
+            int[] result = new int[tamanho];
+            int a = bin.Length - 1;
+
+            for (int i = tamanho - 1; i >= 0; i--, a--)
+            {
+                if (i > tamanho - bin.Length)
+                {
+                    result[i] = bin[a];
+                }
+                else
+                {
+                    if (bin[0] == 1) { result[i] = 1; } else if (bin[0] == 0) { result[i] = 0; }
+                }
+            }
+            return result;
         }
 
-        private static int[] complementa2()
+        private static int[] complementa2(int [] n)
         {
-            return null;
+            int[] complemento = new int[n.Length]; //vetor a ser populado com o valor 1 para ser somado ao vetor n
+            //loop para popular o vetor complemento
+            for (int i = 0; i < complemento.Length; i++)
+            {
+                if(i == complemento.Length - 1) { complemento[i] = 1; } else { complemento[i] = 0; } // populo o vetor com 0 ate a penultima posicao do vetor e a na ultima coloco 1 #0001
+            }
+            //crio um vetor auxiliar que ira receber o vetor n invertido para a soma
+            int[] aux = new int[n.Length];
+            //loop para inverter o vetor n e colocar em aux
+            for(int i = 0; i < n.Length; i++)
+            {
+                if(n[i] == 0) { aux[i] = 1; } else { aux[i] = 0; } //verifico se o valor da posicao e 0, se sim ele inverte para 1, se nao, inverte para 0
+            }
+            aux = soma(aux, complemento);//faco a soma
+            return aux;
         }
+
         static void Main(string[] args)
         {
         }
