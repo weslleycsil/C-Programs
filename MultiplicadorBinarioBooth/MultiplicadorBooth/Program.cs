@@ -121,16 +121,16 @@ namespace MultiplicadorBooth
 
         private static int[] igualadorCasasDec(int [] bin, int tamanho)
         {
-            int[] result = new int[tamanho];
-            int a = bin.Length - 1;
+            int[] result = new int[tamanho];//recebo o tamanho que o vetor tem que ter e aloco um novo vetor com esse tamanho
+            int a = bin.Length - 1;//recebo o tamanho do vetor atual
 
             for (int i = tamanho - 1; i >= 0; i--, a--)
             {
-                if (i > tamanho - bin.Length)
+                if (i > tamanho - bin.Length) // permaneco aqui enquanto meu i nao for maior que o tamanho do vetor bin
                 {
                     result[i] = bin[a];
                 }
-                else
+                else //contador i maior que o vetor bin insiro 0 se o numero for positivo ou 1 se for negativo representado em C2
                 {
                     if (bin[0] == 1) { result[i] = 1; } else if (bin[0] == 0) { result[i] = 0; }
                 }
@@ -159,6 +159,15 @@ namespace MultiplicadorBooth
 
         static void Main(string[] args)
         {
+
+            int[] a;
+            int[] aTemp;
+            int[] q;
+            int q1 = 0;
+            int[] m;
+            int[] mC2;
+
+
         }
     }
 }
