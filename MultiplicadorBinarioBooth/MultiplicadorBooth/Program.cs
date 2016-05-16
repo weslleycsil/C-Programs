@@ -157,17 +157,26 @@ namespace MultiplicadorBooth
             return aux;
         }
 
-        private static int[] convertStrInt(string num)
+        private static int[] convertStrToInt(string num)
         {
             int[] valorConvertido = new int[num.Length];
-
-            for (int i = num.Length; i < num.Length; i++)
+            for (int i = 0; i < num.Length; i++)
             {
                 valorConvertido[i] = Convert.ToInt32(num[i]) - 48;
             }
 
             return valorConvertido;
         }
+
+        private static void printarVetor(int [] vetor)
+        {
+            for (int i = 0; i < vetor.Length; i++)
+            {
+                Console.Write(vetor[i]);
+            }
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
 
@@ -179,17 +188,84 @@ namespace MultiplicadorBooth
             int[] mC2;
 
 
-            string teste = "1234";
-            int [] vetTeste;
+            string bin1, bin2; //variaveis string para armazenar o valores para multiplicar
 
-            
-            
-            /*string str = "123";
+            //Obetenho bin1
+            Console.WriteLine("Entre com o primeiro numero em binario para multiplicar:");
+            bin1 = Console.ReadLine();
 
-            int variavel = Convert.ToInt32(str);
 
-            Console.WriteLine(variavel);*/
+            //Obetenho bin2
+            Console.WriteLine("Entre com o segundo numero em binario para multiplicar:");
+            bin2 = Console.ReadLine();
 
+            //Printo bin1 bin2
+            //Console.WriteLine("Bin1: " + bin1);
+            //Console.WriteLine("Bin2: " + bin2);
+
+            m = convertStrToInt(bin1);
+            q = convertStrToInt(bin2);
+
+
+            int contador, over;
+
+            //Acertar o Zeros (quantidade de bits)
+            if (m.Length > q.Length)
+            {
+
+                q = igualadorCasasDec(q, m.Length);
+                contador = over = m.Length;
+
+            }
+            else
+            {
+
+                m = igualadorCasasDec(m, q.Length);
+                contador = over = q.Length;
+
+            }
+
+            //crio o veotor A com o tamanho que terá no meu contador.
+            a = new int[contador];
+            //Zero todo o meu vetor A
+            for (int i = 0; i < contador; i++)
+            {
+                a[i] = 0;
+            }
+            //designar o valor de -M
+            mC2 = complementa2(m);
+
+
+            Console.WriteLine("Irei printar agora todas as variaveis");
+            Console.Write("Valor de A: "); printarVetor(a);
+            Console.Write("Valor de Q: "); printarVetor(q);
+            Console.Write("Valor de M: "); printarVetor(m);
+            Console.Write("Valor de Mc2: "); printarVetor(mC2);
+            Console.Write("Valor de Q-1: " + q1);
+            Console.WriteLine("");
+
+            //algoritmo de booth
+
+            while (contador > 0)
+            {
+                //Executar as etapas do agoritmo
+                
+                //Decremento o contatdor pois chegou ao fim de um Ciclo
+                contador--;
+                Console.WriteLine("");
+                Console.WriteLine("Decrementei o C para: " + contador);
+                Console.WriteLine("Segue abaixo os valores no término deste ciclo:");
+                Console.WriteLine("Irei printar agora todas as variaveis");
+                Console.Write("Valor de A: "); printarVetor(a);
+                Console.Write("Valor de Q: "); printarVetor(q);
+                Console.WriteLine("Valor de Q-1: " + q1);
+                Console.WriteLine("");
+            }
+            //fim de execução
+            Console.WriteLine("");
+            Console.WriteLine("Sua resposta é: ");
+            printarVetor(a);
+            printarVetor(q);
 
 
             // apenas para manter a janela aberta até que seja pressionada uma tecla
