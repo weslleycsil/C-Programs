@@ -157,6 +157,17 @@ namespace MultiplicadorBooth
             return aux;
         }
 
+        private static int[] convertStrInt(string num)
+        {
+            int[] valorConvertido = new int[num.Length];
+
+            for (int i = num.Length; i < num.Length; i++)
+            {
+                valorConvertido[i] = Convert.ToInt32(num[i]) - 48;
+            }
+
+            return valorConvertido;
+        }
         static void Main(string[] args)
         {
 
@@ -168,6 +179,22 @@ namespace MultiplicadorBooth
             int[] mC2;
 
 
+            string teste = "1234";
+            int [] vetTeste;
+
+            
+            
+            /*string str = "123";
+
+            int variavel = Convert.ToInt32(str);
+
+            Console.WriteLine(variavel);*/
+
+
+
+            // apenas para manter a janela aberta até que seja pressionada uma tecla
+            Console.WriteLine("Pressione uma tecla para sair");
+            Console.ReadKey();
         }
     }
 }
