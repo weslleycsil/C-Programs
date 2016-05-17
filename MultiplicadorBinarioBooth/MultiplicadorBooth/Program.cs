@@ -177,6 +177,22 @@ namespace MultiplicadorBooth
             Console.WriteLine();
         }
 
+        private static void printarResposta(int[] vetor, int[] vetor2)
+        {
+            for (int i = 0; i < vetor.Length; i++)
+            {
+                Console.Write(vetor[i]);
+            }
+
+            Console.Write(" "); //somente para printar um espaco entre A e Q
+
+            for (int i = 0; i < vetor2.Length; i++)
+            {
+                Console.Write(vetor2[i]);
+            }
+
+        }
+
         static void Main(string[] args)
         {
 
@@ -249,7 +265,146 @@ namespace MultiplicadorBooth
             while (contador > 0)
             {
                 //Executar as etapas do agoritmo
-                
+                if (q[q.Length - 1] == q1)
+                {
+                    //caso q0 = q1  00 ou 11 Desloco e decremento o contador
+
+
+                    //Inicio o Deslocamento
+                    //faço Q0 ir pra Q-1
+                    q1 = q[q.Length - 1];
+                    //desloco todo o bloco Q
+                    for (int i = q.Length - 1; i >= 0; i--)
+                    {
+
+                        if (i != 0)
+                        {
+                            q[i] = q[i - 1];
+                        }
+                        else
+                        {
+                            q[i] = a[a.Length - 1];
+                        }
+                    }
+                    //desloco todo o bloco A
+                    for (int i = q.Length - 1; i >= 0; i--)
+                    {
+
+                        if (i != 0)
+                        {
+                            a[i] = a[i - 1];
+                        }
+                        else
+                        {
+                            a[i] = a[1];
+                        }
+                    }
+                    Console.WriteLine("Desloquei");
+
+                }
+                else if ((q[q.Length - 1] == 1) && (q1 == 0))
+                {
+                    //caso q0 = 1 e q-1 = 0 A <- A+Mc2 e depois efetuo deslocamento
+
+                    //Faço A <- A - M
+                    a = soma(a, mC2);
+                    //Fazer Teste de Over Flow
+                    if (a.Length != over)
+                    {
+
+                        //tirar o overflow
+                        aTemp = new int[over];
+                        for (int cont = a.Length - 1; cont > 0; cont--)
+                        {
+                            aTemp[cont - 1] = a[cont];
+                        }
+                        a = aTemp;
+                    }
+
+
+                    //Inicio o Deslocamento
+                    //faço Q0 ir pra Q-1
+                    q1 = q[q.Length - 1];
+                    //desloco todo o bloco Q
+                    for (int i = q.Length - 1; i >= 0; i--)
+                    {
+
+                        if (i != 0)
+                        {
+                            q[i] = q[i - 1];
+                        }
+                        else
+                        {
+                            q[i] = a[a.Length - 1];
+                        }
+                    }
+                    //desloco todo o bloco A
+                    for (int i = q.Length - 1; i >= 0; i--)
+                    {
+
+                        if (i != 0)
+                        {
+                            a[i] = a[i - 1];
+                        }
+                        else
+                        {
+                            a[i] = a[1];
+                        }
+                    }
+                    Console.WriteLine("Somei A-M e Desloquei");
+
+                }
+                else if ((q[q.Length - 1] == 0) && (q1 == 1))
+                {
+                    //caso q0 = 0 e q-1 = 1 A <- A+M e depois efetuo deslocamento
+
+                    //Faço A <- A + M
+                    a = soma(a, m);
+                    //Fazer Teste de Over Flow
+                    if (a.Length != over)
+                    {
+
+                        //tirar o overflow
+                        aTemp = new int[over];
+                        for (int cont = a.Length - 1; cont > 0; cont--)
+                        {
+                            aTemp[cont - 1] = a[cont];
+                        }
+                        a = aTemp;
+                    }
+
+                    //Inicio o Deslocamento
+                    //faço Q0 ir pra Q-1
+                    q1 = q[q.Length - 1];
+                    //desloco todo o bloco Q
+                    for (int i = q.Length - 1; i >= 0; i--)
+                    {
+
+                        if (i != 0)
+                        {
+                            q[i] = q[i - 1];
+                        }
+                        else
+                        {
+                            q[i] = a[a.Length - 1];
+                        }
+                    }
+                    //desloco todo o bloco A
+                    for (int i = q.Length - 1; i >= 0; i--)
+                    {
+
+                        if (i != 0)
+                        {
+                            a[i] = a[i - 1];
+                        }
+                        else
+                        {
+                            a[i] = a[1];
+                        }
+                    }
+                    Console.WriteLine("Somei A+M e Desloquei");
+
+                }
                 //Decremento o contatdor pois chegou ao fim de um Ciclo
                 contador--;
                 Console.WriteLine("");
@@ -264,8 +419,8 @@ namespace MultiplicadorBooth
             //fim de execução
             Console.WriteLine("");
             Console.WriteLine("Sua resposta é: ");
-            printarVetor(a);
-            printarVetor(q);
+            printarResposta(a,q);
+            Console.WriteLine("");
 
 
             // apenas para manter a janela aberta até que seja pressionada uma tecla
